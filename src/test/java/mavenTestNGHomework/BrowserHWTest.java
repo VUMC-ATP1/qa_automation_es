@@ -1,7 +1,6 @@
-package practice;
+package mavenTestNGHomework;
 
 import lombok.extern.log4j.Log4j;
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.testng.Assert;
@@ -14,10 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Log4j
-public class BrowserTest {
+public class BrowserHWTest {
 
-    private final String GOOGLE_URL = "https://www.google.lv/";
-    private final String LOCAL_FILE = "file://" + this.getClass().getResource("/elements.html").getPath();
+    private final String LU_URL = "https://www.lu.lv/";
     ChromeDriver driver;
 
     @BeforeTest
@@ -30,22 +28,17 @@ public class BrowserTest {
     public void openBrowser() {
         log.info("Initializing ChromeDriver");
         driver = new ChromeDriver();
-        driver.get(GOOGLE_URL);
-    }
-
-
-    @Test
-    public void chromeDriverTest() {
-        Assert.assertEquals(driver.getTitle(), "Google");
-        Assert.assertEquals(driver.getCurrentUrl(), GOOGLE_URL);
+        driver.get(LU_URL);
     }
 
     @Test
-    public void elementTest() {
-        driver.get(LOCAL_FILE);
-        driver.findElement(By.id("fNameID")).sendKeys("Hello");
-        System.out.println("123");
+    public void chromeDriverTestUrl() {
+        Assert.assertEquals(driver.getCurrentUrl(), LU_URL);
+    }
 
+    @Test
+    public void chromeDriverTestTitle() {
+        Assert.assertEquals(driver.getTitle(), "Latvijas Universitāte");
     }
 
     @AfterMethod(alwaysRun = true)
